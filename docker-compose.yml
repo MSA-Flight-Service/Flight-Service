@@ -1,0 +1,130 @@
+version: "3.8"
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+          cpus: '1.0'
+    healthcheck:   # ✅ healthcheck 추가
+      test: ["CMD-SHELL", "curl -f http://localhost:9200 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - msa-network
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    networks:
+      - msa-network
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.2
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - msa-network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.3.2
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - msa-network
+
+  db:
+    image: postgres:14
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: test11
+      POSTGRES_USER: lee1
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - msa-network
+
+  eureka-service:
+    build: ./flight-reservation-server
+    ports:
+      - "8761:8761"
+    depends_on:
+      - db
+    networks:
+      - msa-network
+
+  gateway:
+    build: ./flight-reservation-gateway
+    ports:
+      - "8443:8443"
+    depends_on:
+      - eureka-service
+    networks:
+      - msa-network
+
+  user-service:
+    build: ./user-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - gateway
+      - db
+    networks:
+      - msa-network
+
+  reservation-service:
+    build: ./reservation-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - gateway
+      - db
+    networks:
+      - msa-network
+
+  flight-service:
+    build: ./flight-service
+    ports:
+      - "8082:8082"
+    depends_on:        # ✅ 수정: elasticsearch가 건강해질 때까지 기다림
+      elasticsearch:
+        condition: service_healthy
+      gateway:
+        condition: service_started
+      db:
+        condition: service_started
+    networks:
+      - msa-network
+
+volumes:
+  postgres-data:
+
+networks:
+  msa-network:
+    driver: bridge

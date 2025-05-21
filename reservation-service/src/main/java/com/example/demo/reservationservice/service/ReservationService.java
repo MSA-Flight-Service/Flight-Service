@@ -7,6 +7,7 @@ import com.example.demo.reservationservice.util.TimedStorage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -23,53 +24,25 @@ public class ReservationService {
 
     private final ObjectMapper objectMapper;
     private final ReservationRepository reservationRepository;
-    private final KafkaTemplate<String, String> kafkaTemplate;
     private final TimedStorage timedStorage;
+    private final RedisTemplate<String, Object> redisTemplate;
 
-    private FlightDto flightDto;
-    private final Object lock = new Object();
+    public String saveInitialData(Long uId, String uName, String reservationId) {
 
-    public void save(FlightDto dto) {
-        synchronized (lock) {
-            this.flightDto = dto;
-            lock.notifyAll(); // 대기 중인 스레드에 알림
-        }
-    }
-
-    public FlightDto getLatestFlight() {
-        synchronized (lock) {
-            if (flightDto == null) {
-                try {
-                    lock.wait(5000); // 지정된 시간 동안 대기
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-            return flightDto;
-        }
-    }
-
-    public String saveInitialData(Long uId, String uName) {
-
-        FlightDto flightDto = getLatestFlight();
+        // 1. Redis에서 Kafka Consumer가 저장한 FlightDto 꺼냄
+        Object obj = redisTemplate.opsForValue().get(reservationId);
+        FlightDto flightDto = objectMapper.convertValue(obj, FlightDto.class);
 
         if (flightDto == null) {
-            System.out.println("⚠️ flightDto가 Kafka 메시지로부터 아직 초기화되지 않았습니다.");
-
-            flightDto = FlightDto.builder()
-                    .id(999L)
-                    .departureName("서울")
-                    .arrivalName("부산")
-                    .departureTime(LocalDateTime.now().plusDays(1).withHour(10).withMinute(0))
-                    .arrivalTime(LocalDateTime.now().plusDays(1).withHour(11).withMinute(10))
-                    .seatCount(20)
-                    .aircraftType("Boeing-737")
-                    .build();
+            System.out.println("❌ Redis에서 flightDto를 찾을 수 없습니다. 예약 생성 중단");
+            return null;  // 프론트에서 이 경우 실패 처리
         }
 
+        // 2. TimedStorage에 저장할 key 생성
         String key = UUID.randomUUID().toString();
         ReservationRequestDTO dto = new ReservationRequestDTO();
 
+        // 3. 예약 정보 조립
         ReservationDTO reservationDTO = ReservationDTO.builder()
                 .fId(flightDto.getId())
                 .fDeparture(flightDto.getDepartureName())
@@ -89,6 +62,9 @@ public class ReservationService {
     }
 
 
+    public boolean isReservationInRedis(String reservationId) {
+        return redisTemplate.opsForValue().get(reservationId) != null;
+    }
 
 
     public ReservationRequestDTO getReservationData(String key) {
@@ -201,5 +177,19 @@ public class ReservationService {
         }
     }
 
+    public List<Reservation> findReservationsByUserId(Long uId) {
+        return reservationRepository.findByUId(uId);
+    }
 
+    public String deleteReservationById(Long rId) {
+        Reservation reservation = reservationRepository.findById(rId)
+                .orElseThrow(() -> new RuntimeException("해당 예약이 존재하지 않습니다."));
+
+        if (reservation.getPayment() != null) {
+            throw new IllegalStateException("❌ 결제된 예약은 삭제할 수 없습니다.");
+        }
+
+        reservationRepository.deleteById(rId);
+        return "✅ 예약이 삭제되었습니다.";
+    }
 }

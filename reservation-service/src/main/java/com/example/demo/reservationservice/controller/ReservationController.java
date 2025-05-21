@@ -6,6 +6,7 @@ import com.example.demo.reservationservice.entitiy.Reservation;
 import com.example.demo.reservationservice.repository.ReservationRepository;
 import com.example.demo.reservationservice.service.ReservationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,19 +16,27 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/reservations")
 @RequiredArgsConstructor
-public class    ReservationController {
+public class ReservationController {
 
     private final ReservationService reservationService;
     private final ReservationRepository reservationRepository;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @PostMapping("/")
     public ResponseEntity<String> create(@RequestParam Long uId,
-                                         @RequestParam String uName) {
+                                         @RequestParam String uName,
+                                         @RequestParam String reservationId ) {
 
-        String key = reservationService.saveInitialData(uId, uName);
+        String key = reservationService.saveInitialData(uId, uName,reservationId);
         return ResponseEntity.ok(key);
 
-        // 프론트에서 ket가 null이면 실패하게 하기
+        // 프론트에서 key가 null이면 실패하게 하기
+    }
+
+    @GetMapping("/wait")
+    public ResponseEntity<String> waitForReservation(@RequestParam String reservationId) {
+        boolean exists = reservationService.isReservationInRedis(reservationId);
+        return exists ? ResponseEntity.ok("found") : ResponseEntity.noContent().build();
     }
 
     // 좌석 데이터 받기
@@ -86,7 +95,7 @@ public class    ReservationController {
 
     @GetMapping("/search/payment/{uId}")
     public ResponseEntity<List<Reservation>> searchPayment(@PathVariable Long uId) {
-        List<Reservation> reservation = reservationRepository.findByUId(uId);
+        List<Reservation> reservation = reservationService.findReservationsByUserId(uId);
 
         if (reservation.isEmpty()) {
             System.out.println("❌ 예약 없음");
@@ -95,17 +104,14 @@ public class    ReservationController {
         return ResponseEntity.ok(reservation);
     }
 
-    @DeleteMapping("delete/{rId}")
+    @DeleteMapping("/delete/{rId}")
     public ResponseEntity<String> deleteReservation(@PathVariable Long rId) {
-        Reservation reservation = reservationRepository.findById(rId)
-                .orElseThrow(() -> new RuntimeException("해당 예약이 존재하지 않습니다."));
-
-        if (reservation.getPayment() != null) {
-            return ResponseEntity.badRequest().body("❌ 결제된 예약은 삭제할 수 없습니다.");
+        try {
+            String result = reservationService.deleteReservationById(rId);
+            return ResponseEntity.ok(result);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-
-        reservationRepository.deleteById(rId);
-        return ResponseEntity.ok("✅ 예약이 삭제되었습니다.");
     }
 
 

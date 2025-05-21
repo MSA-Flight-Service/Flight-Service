@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
 
-    private final ReservationService reservationService;
     private final ReservationRepository reservationRepository;
 
 
