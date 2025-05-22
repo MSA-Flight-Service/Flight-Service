@@ -1,0 +1,36 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "korean_autocomplete_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "text",
+        "fields": {
+          "keyword": { "type": "keyword", "ignore_above": 256 }
+        }
+      },
+      "nameKo": {
+        "type": "text",
+        "analyzer": "korean_autocomplete_analyzer",
+        "search_analyzer": "standard"
+      },
+      "code": {
+        "type": "keyword"
+      },
+      "continent": {
+        "type": "keyword"
+      },
+      "searchCount": {
+        "type": "integer"
+      }
+    }
+  }
+}

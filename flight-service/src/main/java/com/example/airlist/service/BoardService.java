@@ -11,10 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    public BoardService(BoardRepository boardRepository) {
+        this.boardRepository = boardRepository;
+    }
 
     public BoardResponseDto createBoard(BoardRequestDto requestDto) {
         Board board = Board.builder()

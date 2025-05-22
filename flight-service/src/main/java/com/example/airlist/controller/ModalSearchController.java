@@ -1,6 +1,8 @@
 package com.example.airlist.controller;
 
-import com.example.airlist.service.AirportSearchService;
+import com.example.airlist.service.elastic.AirPortEsCombine;
+import com.example.airlist.service.elastic.AirportEsService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +14,18 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/autocomplete")
 public class ModalSearchController {
 
-    private final AirportSearchService flightSearch;
+    private final AirPortEsCombine flightSearch;
+    public ModalSearchController(AirPortEsCombine flightSearch) {
+        this.flightSearch = flightSearch;
+    }
+
 
     @GetMapping
-    public List<Map<String,String>> autocomplete(@RequestParam String keyword) throws IOException {
-        System.out.println(keyword);
-        return flightSearch.autocomplete(keyword);
+    public List<Map<String,String>> autocomplete(@RequestParam String keyword , HttpServletRequest request) throws IOException {
+        String ip = request.getRemoteAddr(); //클라이언트 IP 추출
+        return flightSearch.searchWithLog(keyword,ip);
     }
 }

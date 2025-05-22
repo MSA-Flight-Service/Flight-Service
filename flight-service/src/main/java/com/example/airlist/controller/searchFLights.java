@@ -2,7 +2,7 @@ package com.example.airlist.controller;
 
 import com.example.airlist.dto.FlightDto;
 import com.example.airlist.entity.FlightDocument;
-import com.example.airlist.service.FlightSearchElastic;
+import com.example.airlist.service.elastic.FlightEsSearch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,10 +21,10 @@ import java.util.Map;
 @RequestMapping("/api/flights")
 public class searchFLights {
 
-    private final FlightSearchElastic flightSearchElastic;
+    private final FlightEsSearch flightEsSearch;
 
-    public searchFLights(FlightSearchElastic flightSearchElastic) {
-        this.flightSearchElastic = flightSearchElastic;
+    public searchFLights(FlightEsSearch flightEsSearch) {
+        this.flightEsSearch = flightEsSearch;
     }
 
     @GetMapping("/search")
@@ -43,7 +43,7 @@ public class searchFLights {
                 ? LocalDateTime.now()
                 : parseSafe(safeDate, false);
 
-        Page<FlightDocument> result = flightSearchElastic.searchElastic(departure, arrival, depTime, page, size);
+        Page<FlightDocument> result = flightEsSearch.searchElastic(departure, arrival, depTime, page, size);
         Page<FlightDto> dtoResult = result.map(this::toDto);
         return ResponseEntity.ok(dtoResult);
     }
@@ -64,8 +64,8 @@ public class searchFLights {
         LocalDateTime depTime = parseSafe(date,false);
         LocalDateTime retTime = parseSafe(returnDate,true);
 
-        Page<FlightDocument> goList = flightSearchElastic.searchElastic(departure, arrival, depTime, page, size);
-        Page<FlightDocument> backList = flightSearchElastic.searchElastic(arrival, departure, retTime, page, size);
+        Page<FlightDocument> goList = flightEsSearch.searchElastic(departure, arrival, depTime, page, size);
+        Page<FlightDocument> backList = flightEsSearch.searchElastic(arrival, departure, retTime, page, size);
 
         return ResponseEntity.ok(Map.of(
                 "goList", goList.map(this::toDto).getContent(),

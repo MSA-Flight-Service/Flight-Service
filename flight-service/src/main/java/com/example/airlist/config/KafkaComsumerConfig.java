@@ -19,7 +19,7 @@ public class KafkaComsumerConfig {
     @Bean
     public ConsumerFactory<String, Object> consumerFactory() { //컨슈머 설정파일
         Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); //카프카 브로커 주소
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "redis:9092"); //카프카 브로커 주소
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "flight-consumer-group"); //같은 그륩 ID를 가진 Comsumer들이 나눠서 소비하게 하라.
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class); //카프카 메세지의 Key를 문자열로 다시 리얼라이즈
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class); //카프카 메세지의 value도 문자열로 다시 리얼라잍즈

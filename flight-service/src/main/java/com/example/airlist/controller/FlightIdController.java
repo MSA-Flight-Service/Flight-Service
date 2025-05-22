@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/flights")
-@RequiredArgsConstructor
 public class FlightIdController {
 
     private final FlightIdService flightIdService;
+    public FlightIdController(FlightIdService flightIdService) {
+        this.flightIdService = flightIdService;
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<FlightInfoDto> getFlightById(@PathVariable Long id){

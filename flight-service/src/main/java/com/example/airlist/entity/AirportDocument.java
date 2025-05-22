@@ -14,4 +14,7 @@ public class AirportDocument {
     String code;      // ex) GMP
     String nameKo;    // ex) 김포국제공항
     String continent; // ex) asia
+
+    @Builder.Default
+    private int searchCount = 0;
 }

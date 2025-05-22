@@ -18,24 +18,25 @@ public class ElasticSearchClientConfig {
 
     @Bean
     public ElasticsearchClient elasticsearchClient() {
-        try {
-            RestClient restClient = RestClient.builder(
-                    new HttpHost("elasticsearch", 9200)
-            ).build();
 
-            ElasticsearchTransport transport = new RestClientTransport(
-                    restClient,
-                    new JacksonJsonpMapper(new ObjectMapper()
-                            .registerModule(new JavaTimeModule())
-                            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS))
-            );
+        //Jackson 설정
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-            return new ElasticsearchClient(transport);
+        // ElasitcSerach 용 JSON MAPPER
+        JacksonJsonpMapper jacksonJsonpMapper = new JacksonJsonpMapper(objectMapper);
 
-        } catch (Exception e) {
-            // 로컬 테스트용 fallback 또는 로그 남기기
-            System.err.println("Elasticsearch 연결 실패: " + e.getMessage());
-            throw new RuntimeException("Elasticsearch 연결 실패", e);
-        }
+        //기본 RestCLient
+
+        RestClient restClient  = RestClient.builder(
+                new HttpHost("elasticsearch", 9200)
+        ).build();
+
+        // transport 연결
+        ElasticsearchTransport transport = new RestClientTransport(restClient, jacksonJsonpMapper);
+
+        //최종 클라이언트
+        return new ElasticsearchClient(transport);
     }
 }

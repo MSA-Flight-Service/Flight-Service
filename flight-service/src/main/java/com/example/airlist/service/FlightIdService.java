@@ -7,10 +7,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class FlightIdService {
 
+
     private final FlightInfoRepository flightInfoRepository;
+    public FlightIdService(FlightInfoRepository flightInfoRepository) {
+        this.flightInfoRepository = flightInfoRepository;
+    }
 
     public FlightInfoDto getFlightById(Long id) {
         Flight_info flight = flightInfoRepository.findById(id)
