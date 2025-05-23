@@ -3,7 +3,7 @@ name: Build and Push MSA Backend Images
 on:
   push:
     branches:
-      - main
+      - flight
 
 jobs:
   build-and-push:
