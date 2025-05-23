@@ -1,0 +1,49 @@
+name: Build and Push MSA Backend Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        service: [
+          flight-service,
+          flight-reservation-server,
+          user-service,
+          flight-reservation-gateway,
+          reservation-service
+        ]
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set permission for Gradle wrapper
+        run: chmod +x ${{ matrix.service }}/gradlew
+
+      - name: Build JAR for ${{ matrix.service }}
+        run: |
+          cd ${{ matrix.service }}
+          ./gradlew clean bootJar -x test
+          cd ..
+
+      - name: Log in to DockerHub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+
+
+      - name: Build and Push Docker Image for ${{ matrix.service }}
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:latest ./${{ matrix.service }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:latest
