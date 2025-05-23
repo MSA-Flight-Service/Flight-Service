@@ -1,6 +1,6 @@
 # Flight Reservation System
 
-## 개요
+## 개요1
 **Flight Reservation System**은 MSA(Microservices Architecture)를 채택하여 항공편 검색, 예약, 유저 관리 등 다양한 서비스를 분산된 마이크로서비스로 구현한 애플리케이션입니다. 개별 서비스는 확장성과 유지보수에 용이하도록 구성되었으며, Eureka를 통한 서비스 디스커버리와 Gateway를 통한 API 라우팅을 지원합니다.
 
 ## 아키텍처 개요
