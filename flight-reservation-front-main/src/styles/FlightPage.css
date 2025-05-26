@@ -1,0 +1,67 @@
+.flight-page-container {
+    padding: 5vh 5vw 10vh 5vw;
+    background: linear-gradient(135deg, #b2e1ff, #ffffff);
+    height: 200vh;
+}
+
+.flight-page-selection-wrapper {
+    margin-top: 20px;
+}
+
+.flight-page-selected-box {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.flight-page-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #333333;
+    font-weight: bold;
+}
+
+.flight-page-selected-list {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-bottom: 20px;
+    min-height: 15vh;
+}
+
+.flight-page-flight-card {
+    width: 100%;
+    background-color: #f0f8ff;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #cce5ff;
+}
+
+.flight-page-route {
+    font-size: 16px;
+    font-weight: 500;
+    color: #005b96;
+}
+
+.flight-page-date {
+    font-size: 14px;
+    color: #333;
+    margin-top: 4px;
+}
+
+.flight-page-reserve-btn {
+    background-color: #3db2ff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.flight-page-reserve-btn:hover {
+    background-color: #0056b3;
+}

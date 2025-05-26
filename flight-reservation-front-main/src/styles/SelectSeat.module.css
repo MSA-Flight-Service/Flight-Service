@@ -1,0 +1,255 @@
+  /* 전체 컨테이너: 배경 및 상대적 배치 기준 */
+  .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+    
+    /* 예매 정보 출력 컨테이너 (왼쪽 상단) */
+    .reservationInfo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 300px;
+      height: 300px;
+      background-color: #ccc; /* 큰 회색 박스 느낌 */
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      z-index: 3;
+    }
+    
+    /* 좌석 선택 컨테이너 (중앙에서 오른쪽) - 화면의 큰 영역을 차지 */
+    .seatSelection {
+      position: absolute;
+      top: 20px;
+      left: 100px;
+      right: 50px;
+      bottom: 10px;
+      width: 1300px;
+      min-height: 80%;
+      padding: 20px;
+      border-radius: 8px;
+      z-index: 1;
+      overflow: auto; /* ✅ 스크롤을 가능하게 해주는 부분 */
+
+
+      /* ✅ 스크롤바 숨기기 */
+      scrollbar-width: none;         /* Firefox */
+      -ms-overflow-style: none;      /* IE and Edge */
+    }
+    .seatSelection::-webkit-scrollbar {
+      display: none;                 /* Chrome, Safari */
+    }
+    .seatArea {
+      position: relative;
+      background-color: transparent;
+      padding: 40px 20px 40px 20px;
+      width: 80%;
+      max-width: 2000px;
+      min-height: 5000px;
+      padding: 0px 200px;
+    }
+    
+
+    .totalPrice {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    
+    /* 좌석 상태 정보 컨테이너 (좌석 선택 영역 위, 우측 상단에 겹침) */
+    .seatStatus {
+      position: absolute;
+      top: 90px;
+      right: 60px;
+      width: 250px;
+      height: 320px;
+      background-color: #eee;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      z-index: 4;
+    }
+    
+    /* 선택한 좌석 컨테이너 (왼쪽 하단, 예매 정보와 약간 겹치게) */
+    .selectedSeats {
+      position: absolute;
+      bottom: 120px;
+      left: 20px;
+      width: 300px;
+      height: 150px;
+      background-color: #fff;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      z-index: 5;
+      overflow: auto;
+    }
+    .selectedSeats h2{
+      padding: auto;
+    }
+    .selectedSeats p{
+      padding: 4px;
+    }
+  /* 다음, 취소 버튼 공통 */
+.buttonGroup {
+  position: absolute;
+  bottom: 125px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 6;
+}
+
+.nextButton {
+  /* position: absolute;  제거 */
+  /* bottom/right 제거 */
+  padding: 10px 20px;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nextButton:hover {
+  background-color: #1976d2;
+}
+
+.cancelButton {
+  padding: 10px 20px;
+  background-color: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancelButton:hover {
+  background-color: #c62828;
+}
+    
+  /* 전체 좌석 배치 컨테이너 */
+  .seatGridLayout {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      padding-top: 800px;
+      background-color:transparent;
+    }
+    
+    /* 각 행(row) */
+    .seatRow {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* 기존 좌석 버튼 */
+    .seatButton {
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+      background-color: #eee;
+      border: 1px solid #aaa;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+      /* 통로 공간 (C, D 사이) */
+      .aisle {
+        width: 40px;
+      }
+    /* 등급별 기본 색상 */
+    .first {
+      background-color: #f44336;
+    }
+    .business {
+      background-color: #9c27b0;
+    }
+    .economy {
+      background-color: #eee;
+    }
+    
+    .seatButton:hover {
+      background-color: #ddd;
+    }
+    .selected {
+      color: #fff;
+    }
+
+    /* 선택된 퍼스트 */
+    .selected.first {
+      background-color: #d32f2f;
+    }
+
+    /* 선택된 비즈니스 */
+    .selected.business {
+      background-color: #7b1fa2;
+    }
+
+    /* 선택된 이코노미 */
+    .selected.economy {
+      background-color: #388e3c;
+    }
+    
+
+
+
+  /* 기존 .seatButton 밑에 추가 */
+  .booked {
+    background-color: #333;
+    color: white;
+    cursor: not-allowed;
+    position: relative;
+  }
+
+  .booked::after {
+    content: "X";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .locked {
+    background-color: #aaa;
+    color: #fff;
+    cursor: not-allowed;
+    position: relative;
+  }
+
+  .locked::after {
+    content: "X";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 상태 정보 색상박스 */
+  .box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }

@@ -1,0 +1,44 @@
+.step-text-progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* 각 step 간격 */
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.step-icon {
+  width: 32px;
+  height: 32px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+  margin-bottom: 4px; /* 아이콘 아래 텍스트와 간격 */
+}
+
+.step-icon.active {
+  filter: grayscale(0%);
+}
+
+.step-text {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.step-text.active {
+  font-weight: bold;
+  color: #1900ff;
+}
+
+.step-separator {
+  margin: 0 10px;
+  color: #ccc;
+}
+
+.step-separator.active {
+  color: #1900ff;
+}

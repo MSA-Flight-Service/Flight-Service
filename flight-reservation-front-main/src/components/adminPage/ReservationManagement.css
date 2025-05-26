@@ -1,0 +1,139 @@
+/* Container */
+.reservation-management {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Title */
+.reservation-management__title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Edit Form */
+.reservation-management__edit-form {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.reservation-management__form-group {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.reservation-management__form-group label {
+    width: 120px;
+    font-weight: bold;
+}
+
+.reservation-management__form-group input[type="text"],
+.reservation-management__form-group input[type="email"] {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.reservation-management__form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.reservation-management__update-btn {
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.reservation-management__cancel-btn {
+    padding: 5px 10px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Search Filter Section */
+.reservation-management__search {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.reservation-management__search-title {
+    margin-top: 0;
+}
+
+.reservation-management__search-inputs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.reservation-management__input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.reservation-management__clear-btn {
+    padding: 5px 10px;
+    background-color: #1890ff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Table Styling */
+.reservation-management__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reservation-management__table-header-row {
+    background-color: #eee;
+}
+
+.reservation-management__table-header,
+.reservation-management__table-cell {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.reservation-management__edit-btn {
+    padding: 5px 10px;
+    background-color: #28a745; /* 수정 버튼 색상 */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+/* Delete Button */
+.reservation-management__delete-btn {
+    padding: 5px 10px;
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* No Reservations Found */
+.reservation-management__no-reservations {
+    padding: 10px;
+    text-align: center;
+}

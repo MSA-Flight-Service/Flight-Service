@@ -1,0 +1,139 @@
+.header {
+    background-color: #3db2ff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7vw;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.logo {
+    color: white;
+    font-style: italic;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 10rem;
+    font-size: 18px;
+}
+
+.nav-menu span {
+    cursor: pointer;
+    font-weight: 500;
+    color: white;
+    transition: color 0.3s;
+}
+
+.nav-menu span:hover {
+    color: rgb(85, 85, 255);
+}
+
+.header-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.header-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid #3db2ff;
+}
+
+.login-btn:hover {
+    background-color: white;
+    color: #3db2ff;
+}
+
+.signup-btn {
+    background-color: transparent;
+    color: white
+}
+
+.signup-btn:hover {
+    background-color: white;
+    color: #3db2ff;
+}
+
+.mypage-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid rgb(85, 85, 255);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mypage-btn:hover {
+    background-color: white;
+    color: #3db2ff;
+}
+
+.logout-btn {
+    background-color: transparent;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: white;
+    color: #3db2ff;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #3db2ff;
+    z-index: 1001;
+    color: white;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 마우스를 올렸을 때 나타남 */
+.nav-item:hover .dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* 내부 항목 스타일 */
+.dropdown-item {
+    padding: 10px 16px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #afdfff;
+    border-radius: 8px;
+}

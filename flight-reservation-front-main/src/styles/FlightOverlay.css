@@ -1,0 +1,86 @@
+.airport-dot {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.airport-dot.active {
+    background-color: #ff5252;
+    box-shadow: 0 0 8px rgba(255, 82, 82, 0.8);
+}
+
+.airport-price {
+    font-size: 12px;
+    color: #f84949;
+}
+.flight-overlay {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 13px;
+    text-align: center;
+    cursor: pointer;
+    width: 80px;
+    transform: translate(-50%, -100%);
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.flight-overlay.active {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+    border: 1px solid #007bff;
+}
+
+.airport-name {
+    font-weight: 600;
+}
+.hover-box {
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: white;
+    font-size: 13px;
+    text-align: center;
+    font-weight: bold;
+    width: 80px;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+}
+
+.fixed-departure-marker {
+    background-color: white;
+    border: 2px solid #1976d2;
+    border-radius: 12px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    font-size: 14px;
+    color: #1976d2;
+    display: flex;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transform: translate(-30px, -20px); /* ← 위치 이동 핵심 */
+}
+
+
+.fixed-marker-label::before {
+    content: "🛫 "; /* 이모지로 출발 느낌 강조 */
+}
+
+@keyframes pop-in {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

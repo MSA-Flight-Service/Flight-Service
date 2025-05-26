@@ -1,0 +1,204 @@
+/* 회원가입 페이지의 전체 컨테이너 */
+.signup-page {
+    height: 100vh;
+    position: relative;
+    background-image: url('/images/img1.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 중앙에 위치한 회원가입 폼 */
+.signup-page .form-panel {
+    width: 40vw;
+    padding: 20px 100px;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    align-items: center;
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+/* 폼 제목 */
+.signup-page .form-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 폼 내 레이블 */
+.signup-page .form-label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* 입력 필드 */
+.signup-page .form-input {
+    width: 40vw;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+
+.signup-page .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group-name {
+    display: flex; 
+    gap: 16px;  /* 입력창 사이의 간격 */
+    width: 100%; /* 부모 요소가 전체 너비를 차지하게 함 */
+}
+
+.form-group-name .input-group {
+    display: flex;
+    flex-direction: column; /* 라벨을 입력창 위에 위치시키기 위해 세로 방향으로 설정 */
+    width: 100%;
+}
+
+.form-group-name .form-input-fistname,
+.form-group-name .form-input-lastname {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.form-group-name .form-input-fistname {
+    flex-grow: 1;
+}
+
+.form-group-name .form-input-lastname {
+    flex-grow: 1;
+}
+
+.input-group:first-child {
+    flex: 6;
+}
+
+.input-group:last-child {
+    flex: 4;
+}
+
+.signup-page .form-group .verification-btn {
+    align-self: flex-end;
+}
+
+/* 인증번호 발송 및 확인 버튼 */
+.signup-page .verification-btn {
+    width: 150px;
+    padding: 10px;
+    background-color: rgb(85, 85, 255);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.signup-page .verification-btn:hover {
+    background-color: rgb(150, 150, 255);
+}
+
+/* 회원가입 버튼 */
+.signup-page .signup-btn {
+    width: 100%;    
+    padding: 12px;
+    background-color: rgb(85, 85, 255);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.signup-page .signup-btn:hover {
+    background-color: rgb(150, 150, 255);
+}
+
+/* 오류 메시지 */
+.signup-page .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* 로그인 링크 */
+.signup-page .login-link {
+    margin-top: 20px;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.signup-page .login-link:hover {
+    text-decoration: underline;
+}
+
+.agreement-content {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.agreement-section {
+    margin-bottom: 10px;
+}
+
+.all-agree {
+    display: block;
+    text-align: right;
+}
+
+.agreement-box-scrollable {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    height: 150px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.agree-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.agree-btn:hover {
+    background-color: #0056b3;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

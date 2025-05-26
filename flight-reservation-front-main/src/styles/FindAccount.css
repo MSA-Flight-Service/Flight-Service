@@ -1,0 +1,153 @@
+/* FindAccount 페이지의 전체 컨테이너 */
+.find-account-page .find-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.find-account-page input {
+    width: 20vw;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* 배경 이미지 영역 */
+.find-account-page .img-panel {
+    position: absolute;
+    top: 15%;
+    right: 0; /* 위치 반전 */
+    width: 60%;
+    height: 70%;
+    background-image: url('/images/img1.jpg');
+    background-size: cover;
+    z-index: 1;
+    animation: slideInFromLeft 0.6s ease-out forwards;
+}
+
+/* 아이디 찾기 및 비밀번호 찾기 폼 영역 */
+.find-account-page .form-panel {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #3db2ff, #ffffff);
+    clip-path: polygon(80% 0%, 0% 0%, 20% 100%, 100% 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    animation: slideIn 0.6s ease-out forwards;
+}
+
+.find-account-page h2 {
+    color: #333;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.find-account-page .mode-toggle {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin-bottom: 30px;
+}
+
+.find-account-page .mode-toggle button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: rgb(168, 168, 168);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    max-height: 50px;
+    overflow: hidden;
+}
+
+.find-account-page .mode-toggle button.active {
+    background-color: rgb(85, 85, 255);
+}
+
+.find-account-page .mode-toggle button:hover {
+    background-color: rgb(85, 85, 255);
+}
+
+/* 폼 내 레이블 및 입력 필드 */
+.find-account-page label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.find-account-page button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgb(85, 85, 255);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.find-account-page button:hover {
+    background-color: rgb(150, 150, 255);
+}
+
+/* 오류 메시지 및 성공 메시지 스타일 */
+.find-account-page .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.find-account-page .success-message {
+    color: green;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* 링크 스타일 */
+.find-account-page .back-to-login {
+    margin-top: 30px;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.find-account-page .back-to-login:hover {
+    text-decoration: underline;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

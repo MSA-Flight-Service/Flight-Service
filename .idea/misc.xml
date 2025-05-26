@@ -1,0 +1,13 @@
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/flight-reservation-gateway" />
+    <file type="web" url="file://$PROJECT_DIR$/flight-reservation-server" />
+    <file type="web" url="file://$PROJECT_DIR$/flight-service" />
+    <file type="web" url="file://$PROJECT_DIR$/reservation-service" />
+    <file type="web" url="file://$PROJECT_DIR$/user-service" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,136 @@
+/* Container */
+.user-management {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Title */
+.user-management__title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+/* Edit Form */
+.user-management__edit-form {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.user-management__form-group {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.user-management__form-group label {
+    width: 120px;
+    font-weight: bold;
+}
+
+.user-management__form-group input[type="text"],
+.user-management__form-group input[type="email"] {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.user-management__form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.user-management__update-btn {
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-management__cancel-btn {
+    padding: 5px 10px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Search Filter Section */
+.user-management__search {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.user-management__search-title {
+    margin-top: 0;
+}
+
+.user-management__search-inputs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.user-management__input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.user-management__clear-btn {
+    padding: 5px 10px;
+    background-color: #1890ff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Table Styling */
+.user-management__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-management__table-header-row {
+    background-color: #eee;
+}
+
+.user-management__table-header,
+.user-management__table-cell {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+.user-management__edit-btn {
+    padding: 5px 10px;
+    background-color: #28a745; /* delete 버튼과 동일한 빨간색 */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+/* Delete Button */
+.user-management__delete-btn {
+    padding: 5px 10px;
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* No Users Found */
+.user-management__no-users {
+    padding: 10px;
+    text-align: center;
+}

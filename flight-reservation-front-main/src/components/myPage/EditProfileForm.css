@@ -1,0 +1,88 @@
+.edit-profile {
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.edit-profile h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-row {
+  display: flex;
+  gap: 5vw;
+  margin-bottom: 1rem;
+}
+
+.first-name {
+  flex: 6;
+}
+
+.last-name {
+  flex: 4;
+}
+
+.edit-profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.edit-profile-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.edit-profile-form input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.edit-profile-form input:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #fff;
+}
+
+.edit-profile-form input[disabled] {
+    background-color: #e9ecef;
+    color: #777;
+}
+
+.edit-button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.edit-button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button-group button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+}
+
+.edit-button-group button[type="submit"]:hover {
+    background-color: #237b26;
+}
+
+.edit-button-group button[type="button"] {
+    background-color: #6c757d;
+    color: white;
+}
+
+.edit-button-group button[type="button"]:hover {
+    background-color: #5a6268;
+}

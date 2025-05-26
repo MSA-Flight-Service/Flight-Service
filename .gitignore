@@ -1,0 +1,5 @@
+# .gitignore 파일에 추가
+*.jar
+/build/
+/out/
+!**/gradle-wrapper.jar

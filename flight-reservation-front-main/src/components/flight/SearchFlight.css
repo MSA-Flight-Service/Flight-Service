@@ -1,0 +1,142 @@
+.flight-search-box {
+  margin: 4rem auto;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* 상단 탭 */
+.trip-tabs {
+  display: flex;
+  gap: 1rem;
+}
+
+.trip-tabs button {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: 1px solid #d0d7de;
+  background-color: #f1f3f5;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.trip-tabs button.active {
+  background-color: #59a7f6;
+  color: white;
+}
+
+/* 출발/도착지 선택 */
+.airport-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.airport-box {
+  flex: 1;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.airport-box:hover {
+  border-color: #2563eb;
+}
+
+.airport-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.airport-code {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.swap-btn {
+  padding: 0.6rem 0.9rem;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.swap-btn:hover {
+  background-color: #cfd4da;
+}
+
+/* 날짜 선택 */
+.date-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.date-row input {
+  flex: 1;
+  padding: 0.9rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.date-row input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+}
+
+/* 하단 버튼 */
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.reset-btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #d0d7de;
+  background-color: #f1f3f5;
+  cursor: pointer;
+}
+
+.reset-btn:hover {
+  background-color: #e2e6ea;
+}
+
+.search-btn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #59a7f6;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.flight-search-box h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: -0.5rem;
+  color: #1f2937;
+}

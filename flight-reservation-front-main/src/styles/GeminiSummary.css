@@ -1,0 +1,49 @@
+.summaryBtn {
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb); /* 보라+핑크 계열 */
+    border: none;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: "Noto Sans KR", sans-serif;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.summaryBtn:hover {
+    background: linear-gradient(135deg, #8e9eab, #eef2f3); /* hover 시 그라데이션 변경 */
+}
+
+.summaryText {
+    margin-top: 1.2rem;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #333;
+    white-space: pre-wrap;
+    font-family: "Noto Sans KR", sans-serif;
+}
+.fadeInLine {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.summaryText {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.95rem;
+    color: #333;
+}
+
