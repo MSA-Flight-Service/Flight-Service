@@ -176,10 +176,15 @@
 - **서비스 디스커버리**: Eureka 대시보드를 통해 현재 등록된 서비스 목록 및 상태를 확인할 수 있습니다.
 
 ---
-## 트러블슈팅 사례(Troubleshooting)
-아래는 각 마이크로서비스에서 발생했던 주요 이슈와 해결 과정입니다.
+## 🔧 주요 트러블슈팅 사례 요약
 
-- [항공 서비스 이슈](./docs/troubleshooting/flight-service.md)
+| 구분 | 문제 | 해결 방법 | 결과 |
+|------|------|------------|------|
+| 🔁 검색 속도 저하 | RDBMS LIKE 검색 Full Scan 발생 | Elasticsearch 도입 + nori analyzer 적용 | 평균 응답 2.8초 → 0.3초 |
+| 🔄 반복 쿼리 부하 | 인기 검색어 반복 요청 → ES 부하 집중 | Redis 캐싱 도입 + TTL 5분 적용 | 캐시 적중률 82%, ES 부하 70% 감소 |
+| 🧾 예약 동시성 충돌 | 좌석 중복 예약 문제 | Optimistic Lock + Redis 분산 Lock 적용 | 중복률 0%, 데이터 정합성 확보 |
+
+📄 상세한 트러블슈팅 내용은 [여기서 확인](./docs/troubleshooting/flight-service.md)할 수 있습니다.
 
 ---
 
