@@ -229,12 +229,3 @@
 
 ---
 
-## 라이센스
-
-이 프로젝트는 **MIT 라이센스** 하에 배포됩니다. 자세한 내용은 [`LICENSE`](LICENSE) 파일을 참조하세요.
-
----
-
-## 문의 및 연락처
-
-프로젝트 관련 문의는 [Parksoonil GitHub 프로필](https://github.com/parksoonil) 또는 이슈 트래커를 통해 연락해주시면 됩니다.
