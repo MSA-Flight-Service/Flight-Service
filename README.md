@@ -3,11 +3,6 @@
 > **Spring Boot 기반 MSA 구조에서 항공편 검색, 예약, 실시간 이벤트 처리까지 구현한 실전형 백엔드 시스템입니다.**  
 > Elasticsearch 기반 고속 검색, Redis 캐싱, Kafka 비동기 메시징, Docker + CI/CD 배포까지 포함합니다.
 
-> - Spring Boot 기반 3개 서비스: 유저 / 항공편 / 예매
-> - Gateway + Eureka + Kafka + Elasticsearch
-> - React + Vite 프론트 + 지도/날씨 오픈API 통합
-> - GitHub Actions + Docker + EC2로 CI/CD 구성
-
 ---
 
 ## Screenshots
