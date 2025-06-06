@@ -180,7 +180,7 @@
 
 | 구분 | 문제 | 해결 방법 | 결과 |
 |------|------|------------|------|
-| 🔁 검색 속도 저하 | RDBMS LIKE 검색 Full Scan 발생 | Elasticsearch 도입 + nori analyzer 적용 | 평균 응답 2.8초 → 0.3초 |
+| 🔁 검색 속도 저하 | RDBMS LIKE 검색 Full Scan 발생 | Elasticsearch 도입 + nori analyzer 적용 | 평균 응답 3600~4000ms초 -> 40~80ms |
 | 🔄 반복 쿼리 부하 | 인기 검색어 반복 요청 → ES 부하 집중 | Redis 캐싱 도입 + TTL 5분 적용 | 캐시 적중률 82%, ES 부하 70% 감소 |
 | 🧾 예약 동시성 충돌 | 좌석 중복 예약 문제 | Optimistic Lock + Redis 분산 Lock 적용 | 중복률 0%, 데이터 정합성 확보 |
 
