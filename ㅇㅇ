@@ -1,0 +1,29 @@
+1. 신뢰도 퍼짐 정도 (Confidence Variance)
+
+$$\sigma^2_c = \frac{1}{n}\sum_{i=1}^{n}(c_i - \bar{c})^2, \qquad \bar{c} = \frac{1}{n}\sum_{i=1}^{n}c_i$$
+
+에이전트들이 얼마나 다른 확신 강도를 가지는지 측정.
+
+2. 의견 다양성 (Verdict Entropy)
+
+$$H = -\sum_{k \in \mathcal{C}} p_k \log p_k, \qquad p_k = \frac{|{i : v_i = k}|}{n}$$
+
+판정이 여러 클래스로 분산될수록 $H$ 증가. 4명 전원 동의 시 $H=0$.
+
+3. 최고-최저 신뢰도 차이 (Max-Min Confidence Gap)
+
+$$\Delta c = \max_i, c_i ;-; \min_i, c_i$$
+
+가장 확신하는 에이전트와 가장 불확실한 에이전트 사이의 신뢰도 격차.
+
+4. 서로 다른 의견 개수 (Unique Verdict Count)
+
+$$U = \bigl|{v_i : i = 1, \ldots, n}\bigr|$$
+
+4명이 모두 같은 판정이면 $U=1$, 모두 다르면 최대 $U=3$ (클래스 수 기준).
+
+5. 다수 의견 비율 (Majority Ratio)
+
+$$r = \frac{\displaystyle\max_{k \in \mathcal{C}};|{i : v_i = k}|}{n}$$
+
+가장 많이 선택된 클래스에 투표한 에이전트 비율. 만장일치면 $r=1$, 2:1:1이면 $r=0.5$.
